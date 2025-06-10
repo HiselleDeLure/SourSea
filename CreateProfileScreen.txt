@@ -1,0 +1,87 @@
+CreateProfileScreen
+
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+
+export default function CreateProfile({ navigation }) {
+  const [username, setUsername] = useState('');
+  const [color, setColor] = useState('#ff69b4'); // cor padrão: rosa moderno
+
+  const handleCreate = () => {
+    // Aqui você salva os dados localmente ou envia para o backend
+    navigation.navigate('Home');
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Personalize seu Perfil</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Nome de Usuário"
+        placeholderTextColor="#ccc"
+        onChangeText={setUsername}
+        value={username}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Cor do Tema (hex)"
+        placeholderTextColor="#ccc"
+        onChangeText={setColor}
+        value={color}
+      />
+
+      {/* Simulação da imagem de perfil + gradiente */}
+      <View style={[styles.profilePreview, { backgroundColor: color }]}>
+        <Text style={styles.previewText}>Preview do seu perfil</Text>
+      </View>
+
+      <TouchableOpacity style={styles.button} onPress={handleCreate}>
+        <Text style={styles.buttonText}>Criar Perfil</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+  },
+  title: {
+    color: '#CFFF04',
+    fontSize: 28,
+    marginBottom: 24,
+    textAlign: 'center',
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#CFFF04',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 16,
+    color: '#fff',
+  },
+  profilePreview: {
+    height: 100,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 24,
+  },
+  previewText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  button: {
+    backgroundColor: '#CFFF04',
+    padding: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'black',
+    fontWeight: 'bold',
+  },
+});
